@@ -34,18 +34,23 @@
     };
 
     // main method, which does the magic
-    $.sticky_div = function (selector, options) {
+    $.sticky_div = function(selector, options) {
         var window_top = $(window).scrollTop();
         var window_height = $(window).height();
-        selector.each(function () {
+        selector.each(function() {
             var div_top = $(this).prev().offset().top;
             var div_height = $(this).outerHeight();
             if ((!options.outer_div || (div_height < $(options.outer_div).height())) && (window_top > (div_top - options.top)) && (div_height < (window_height - options.bottom))) {
                 $(this).addClass('sticky-div');
-                if (options.style_css != null) {$(this).addClass(options.style_css); }
+                if (options.style_css != null) {
+                    $(this).addClass(options.style_css);
+                }
             } else {
                 $(this).removeClass('sticky-div');
+                if (options.style_css != null) {
+                    $(this).removeClass(options.style_css);
+                }
             }
         });
-    }
+    };
 })(jQuery);
